@@ -1,5 +1,5 @@
 {
-  "name": "@w-10-m/linear-mcp",
+  "name": "@west10tech/linear-mcp",
   "version": "0.0.0-development",
   "description": "MCP server with Linear integration",
   "type": "module",
