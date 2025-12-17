@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/w-10-m/linear-mcp/compare/v1.0.0...v1.1.0) (2025-12-17)
+
+
+### Features
+
+* add OIDC npm publishing with provenance ([2aea9b9](https://github.com/w-10-m/linear-mcp/commit/2aea9b9f9c97a0be3e5c721fd53e3dd621905c79))
+
 # 1.0.0 (2025-12-16)
 
 
