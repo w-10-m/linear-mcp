@@ -1,6 +1,10 @@
 # linear-mcp
 
+[![npm version](https://img.shields.io/npm/v/@west10tech/linear-mcp.svg)](https://www.npmjs.com/package/@west10tech/linear-mcp)
+
 MCP server with Linear integration
+
+**npm:** https://www.npmjs.com/package/@west10tech/linear-mcp
 
 This MCP server includes the following integrations:
 
@@ -36,7 +40,7 @@ This MCP server provides 23 tools across 1 integrations:
 ## Installation
 
 ```bash
-npm install linear-mcp-github-publish-test-001
+npm install @west10tech/linear-mcp
 ```
 
 ## Environment Setup
@@ -68,7 +72,7 @@ Add this to your Claude Desktop configuration:
   "mcpServers": {
     "linear-mcp": {
       "command": "npx",
-      "args": ["linear-mcp-github-publish-test-001"],
+      "args": ["@west10tech/linear-mcp"],
       "env": {
         "LINEAR_API_KEY": "your_linear_api_key_here"
       }
