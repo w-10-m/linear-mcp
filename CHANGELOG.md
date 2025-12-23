@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/w-10-m/linear-mcp/compare/v1.1.0...v1.1.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* update README with correct package information ([53ce6f2](https://github.com/w-10-m/linear-mcp/commit/53ce6f20f0a9c8616a8646bc1619f6869c5281cb))
+* update README with correct package information ([5adb390](https://github.com/w-10-m/linear-mcp/commit/5adb390d393d88b24b2ab1d179741621a41c859a))
+
 # [1.1.0](https://github.com/w-10-m/linear-mcp/compare/v1.0.0...v1.1.0) (2025-12-17)
 
 
