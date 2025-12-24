@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/w-10-m/linear-mcp/compare/v1.1.1...v1.2.0) (2025-12-24)
+
+
+### Features
+
+* add unit tests with coverage reporting ([37164a4](https://github.com/w-10-m/linear-mcp/commit/37164a4d77603336f30e2dd3175ab97067c596a4))
+
 ## [1.1.1](https://github.com/w-10-m/linear-mcp/compare/v1.1.0...v1.1.1) (2025-12-23)
 
 
