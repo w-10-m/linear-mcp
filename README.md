@@ -1,6 +1,7 @@
 # linear-mcp
 
 [![npm version](https://img.shields.io/npm/v/@west10tech/linear-mcp.svg)](https://www.npmjs.com/package/@west10tech/linear-mcp)
+[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/w-10-m/COVERAGE_GIST_ID/raw/coverage.json)]()
 
 MCP server with Linear integration
 
