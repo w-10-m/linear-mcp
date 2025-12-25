@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/w-10-m/linear-mcp/compare/v1.3.0...v1.4.0) (2025-12-25)
+
+
+### Features
+
+* add E2E test infrastructure ([a3cd787](https://github.com/w-10-m/linear-mcp/commit/a3cd787450f2c4a43d52c65dc1b8cc2d066807d2))
+
 # [1.3.0](https://github.com/w-10-m/linear-mcp/compare/v1.2.0...v1.3.0) (2025-12-25)
 
 
