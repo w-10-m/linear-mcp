@@ -54,7 +54,24 @@ describe('JSON-RPC Protocol', () => {
         'linear_search_issues',
         'linear_get_viewer',
         'linear_create_comment',
-        'linear_list_comments'
+        'linear_list_comments',
+        'linear_bulk_create_issues',
+        'linear_bulk_update_issues',
+        'linear_bulk_transition_issues',
+        'linear_list_cycles',
+        'linear_get_cycle',
+        'linear_create_cycle',
+        'linear_update_cycle',
+        'linear_add_issue_to_cycle',
+        'linear_create_sub_issue',
+        'linear_list_sub_issues',
+        'linear_set_parent',
+        'linear_remove_parent',
+        'linear_log_time',
+        'linear_get_time_entries',
+        'linear_list_attachments',
+        'linear_create_attachment',
+        'linear_delete_attachment'
       ];
 
       for (const tool of expectedTools) {

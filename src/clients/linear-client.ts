@@ -3691,4 +3691,276 @@ export class LinearClient {
     }
   }
 
+  async bulkCreateIssues(params: any, options?: RequestOptions): Promise<any> {
+    const issues = params.issues;
+    if (!Array.isArray(issues) || issues.length === 0) {
+      throw new Error('bulkCreateIssues requires a non-empty issues array');
+    }
+    if (issues.length > 50) {
+      throw new Error('bulkCreateIssues supports a maximum of 50 issues per call');
+    }
+
+    const results: Array<{ success: boolean; data?: any; error?: string }> = [];
+    let succeeded = 0;
+    let failed = 0;
+
+    for (let i = 0; i < issues.length; i++) {
+      if (options?.signal?.aborted) throw new Error('Request was cancelled');
+      if (options?.onProgress) {
+        await options.onProgress({ progress: i, total: issues.length, message: `Creating issue ${i + 1} of ${issues.length}...` });
+      }
+      try {
+        const requestConfig: any = {};
+        if (options?.signal) requestConfig.signal = options.signal;
+        const response = await this.httpClient.post('', issues[i], requestConfig);
+        results.push({ success: true, data: response.data });
+        succeeded++;
+      } catch (error) {
+        results.push({ success: false, error: error instanceof Error ? error.message : String(error) });
+        failed++;
+      }
+    }
+
+    return {
+      content: [{ type: 'text', text: JSON.stringify({ total: issues.length, succeeded, failed, results }, null, 2) }]
+    };
+  }
+
+  async bulkUpdateIssues(params: any, options?: RequestOptions): Promise<any> {
+    const issues = params.issues;
+    if (!Array.isArray(issues) || issues.length === 0) {
+      throw new Error('bulkUpdateIssues requires a non-empty issues array');
+    }
+    if (issues.length > 50) {
+      throw new Error('bulkUpdateIssues supports a maximum of 50 issues per call');
+    }
+
+    const results: Array<{ success: boolean; data?: any; error?: string }> = [];
+    let succeeded = 0;
+    let failed = 0;
+
+    for (let i = 0; i < issues.length; i++) {
+      if (options?.signal?.aborted) throw new Error('Request was cancelled');
+      if (options?.onProgress) {
+        await options.onProgress({ progress: i, total: issues.length, message: `Updating issue ${i + 1} of ${issues.length}...` });
+      }
+      try {
+        const requestConfig: any = {};
+        if (options?.signal) requestConfig.signal = options.signal;
+        const response = await this.httpClient.post('', issues[i], requestConfig);
+        results.push({ success: true, data: response.data });
+        succeeded++;
+      } catch (error) {
+        results.push({ success: false, error: error instanceof Error ? error.message : String(error) });
+        failed++;
+      }
+    }
+
+    return {
+      content: [{ type: 'text', text: JSON.stringify({ total: issues.length, succeeded, failed, results }, null, 2) }]
+    };
+  }
+
+  async bulkTransitionIssues(params: any, options?: RequestOptions): Promise<any> {
+    const issues = params.issues;
+    if (!Array.isArray(issues) || issues.length === 0) {
+      throw new Error('bulkTransitionIssues requires a non-empty issues array');
+    }
+    if (issues.length > 50) {
+      throw new Error('bulkTransitionIssues supports a maximum of 50 issues per call');
+    }
+
+    const results: Array<{ success: boolean; data?: any; error?: string }> = [];
+    let succeeded = 0;
+    let failed = 0;
+
+    for (let i = 0; i < issues.length; i++) {
+      if (options?.signal?.aborted) throw new Error('Request was cancelled');
+      if (options?.onProgress) {
+        await options.onProgress({ progress: i, total: issues.length, message: `Transitioning issue ${i + 1} of ${issues.length}...` });
+      }
+      try {
+        const requestConfig: any = {};
+        if (options?.signal) requestConfig.signal = options.signal;
+        const response = await this.httpClient.post('', issues[i], requestConfig);
+        results.push({ success: true, data: response.data });
+        succeeded++;
+      } catch (error) {
+        results.push({ success: false, error: error instanceof Error ? error.message : String(error) });
+        failed++;
+      }
+    }
+
+    return {
+      content: [{ type: 'text', text: JSON.stringify({ total: issues.length, succeeded, failed, results }, null, 2) }]
+    };
+  }
+
+  async listCycles(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute list_cycles: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async getCycle(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute get_cycle: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async createCycle(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute create_cycle: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async updateCycle(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute update_cycle: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async addIssueToCycle(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute add_issue_to_cycle: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async createSubIssue(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute create_sub_issue: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async listSubIssues(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute list_sub_issues: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async setParent(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute set_parent: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async removeParent(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute remove_parent: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async logTime(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute log_time: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async getTimeEntries(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute get_time_entries: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async listAttachments(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute list_attachments: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async createAttachment(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute create_attachment: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async deleteAttachment(params: any, options?: RequestOptions): Promise<any> {
+    try {
+      const requestConfig: any = {};
+      if (options?.signal) requestConfig.signal = options.signal;
+      const response = await this.httpClient.post('', params, requestConfig);
+      return { content: [{ type: 'text', text: JSON.stringify(response.data, null, 2) }] };
+    } catch (error) {
+      if (axios.isCancel(error)) throw new Error('Request was cancelled');
+      throw new Error(`Failed to execute delete_attachment: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
 }
