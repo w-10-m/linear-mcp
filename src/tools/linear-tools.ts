@@ -3,6 +3,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { Logger } from '../services/logger.js';
 import { RequestContext } from '../services/request-tracker.js';
 import { ProgressReporter } from '../services/progress-reporter.js';
+import { ToolResponse } from '../types.js';
 
 export interface LinearToolsConfig {
   lINEARAPIKEY?: string;
@@ -755,7 +756,7 @@ export class LinearTools {
     return supportedTools.includes(toolName);
   }
 
-  async executeTool(name: string, args: any, context?: RequestContext, progressReporter?: ProgressReporter): Promise<any> {
+  async executeTool(name: string, args: any, context?: RequestContext, progressReporter?: ProgressReporter): Promise<ToolResponse> {
     const startTime = Date.now();
     
     this.logger.logToolStart(name, args);

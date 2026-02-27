@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { Logger } from '../services/logger.js';
-import { RequestOptions, ProgressCallback } from '../types.js';
+import { RequestOptions, ProgressCallback, GraphQLToolParams, ToolResponse, BulkOperationInput } from '../types.js';
 
 export interface LinearClientConfig {
   lINEARAPIKEY?: string;
@@ -3691,7 +3691,7 @@ export class LinearClient {
     }
   }
 
-  async bulkCreateIssues(params: any, options?: RequestOptions): Promise<any> {
+  async bulkCreateIssues(params: BulkOperationInput, options?: RequestOptions): Promise<ToolResponse> {
     const issues = params.issues;
     if (!Array.isArray(issues) || issues.length === 0) {
       throw new Error('bulkCreateIssues requires a non-empty issues array');
@@ -3726,7 +3726,7 @@ export class LinearClient {
     };
   }
 
-  async bulkUpdateIssues(params: any, options?: RequestOptions): Promise<any> {
+  async bulkUpdateIssues(params: BulkOperationInput, options?: RequestOptions): Promise<ToolResponse> {
     const issues = params.issues;
     if (!Array.isArray(issues) || issues.length === 0) {
       throw new Error('bulkUpdateIssues requires a non-empty issues array');
@@ -3761,7 +3761,7 @@ export class LinearClient {
     };
   }
 
-  async bulkTransitionIssues(params: any, options?: RequestOptions): Promise<any> {
+  async bulkTransitionIssues(params: BulkOperationInput, options?: RequestOptions): Promise<ToolResponse> {
     const issues = params.issues;
     if (!Array.isArray(issues) || issues.length === 0) {
       throw new Error('bulkTransitionIssues requires a non-empty issues array');
@@ -3796,7 +3796,7 @@ export class LinearClient {
     };
   }
 
-  async listCycles(params: any, options?: RequestOptions): Promise<any> {
+  async listCycles(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3808,7 +3808,7 @@ export class LinearClient {
     }
   }
 
-  async getCycle(params: any, options?: RequestOptions): Promise<any> {
+  async getCycle(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3820,7 +3820,7 @@ export class LinearClient {
     }
   }
 
-  async createCycle(params: any, options?: RequestOptions): Promise<any> {
+  async createCycle(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3832,7 +3832,7 @@ export class LinearClient {
     }
   }
 
-  async updateCycle(params: any, options?: RequestOptions): Promise<any> {
+  async updateCycle(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3844,7 +3844,7 @@ export class LinearClient {
     }
   }
 
-  async addIssueToCycle(params: any, options?: RequestOptions): Promise<any> {
+  async addIssueToCycle(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3856,7 +3856,7 @@ export class LinearClient {
     }
   }
 
-  async createSubIssue(params: any, options?: RequestOptions): Promise<any> {
+  async createSubIssue(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3868,7 +3868,7 @@ export class LinearClient {
     }
   }
 
-  async listSubIssues(params: any, options?: RequestOptions): Promise<any> {
+  async listSubIssues(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3880,7 +3880,7 @@ export class LinearClient {
     }
   }
 
-  async setParent(params: any, options?: RequestOptions): Promise<any> {
+  async setParent(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3892,7 +3892,7 @@ export class LinearClient {
     }
   }
 
-  async removeParent(params: any, options?: RequestOptions): Promise<any> {
+  async removeParent(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3904,7 +3904,7 @@ export class LinearClient {
     }
   }
 
-  async logTime(params: any, options?: RequestOptions): Promise<any> {
+  async logTime(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3916,7 +3916,7 @@ export class LinearClient {
     }
   }
 
-  async getTimeEntries(params: any, options?: RequestOptions): Promise<any> {
+  async getTimeEntries(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3928,7 +3928,7 @@ export class LinearClient {
     }
   }
 
-  async listAttachments(params: any, options?: RequestOptions): Promise<any> {
+  async listAttachments(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3940,7 +3940,7 @@ export class LinearClient {
     }
   }
 
-  async createAttachment(params: any, options?: RequestOptions): Promise<any> {
+  async createAttachment(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
@@ -3952,7 +3952,7 @@ export class LinearClient {
     }
   }
 
-  async deleteAttachment(params: any, options?: RequestOptions): Promise<any> {
+  async deleteAttachment(params: GraphQLToolParams, options?: RequestOptions): Promise<ToolResponse> {
     try {
       const requestConfig: any = {};
       if (options?.signal) requestConfig.signal = options.signal;
