@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/w-10-m/linear-mcp/compare/v1.4.0...v1.5.0) (2026-02-27)
+
+
+### Features
+
+* add identifier filter support to search_issues ([3d9d5c6](https://github.com/w-10-m/linear-mcp/commit/3d9d5c675fbb23bcf68afdfa11590e3028791440))
+
 # [1.4.0](https://github.com/w-10-m/linear-mcp/compare/v1.3.0...v1.4.0) (2025-12-25)
 
 
