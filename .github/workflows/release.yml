@@ -29,6 +29,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test -- --coverage
+      - run: npm run test:e2e
+        env:
+          LINEAR_API_KEY: test-api-key-for-ci
+          LOG_SHIPPING_ENABLED: 'false'
 
       - name: Extract coverage percentage
         if: github.ref == 'refs/heads/main'
