@@ -407,7 +407,7 @@ export class LinearTools {
             },
             variables: {
               type: 'object',
-              description: 'Variables for filtering issues. Use &#x27;filter&#x27; object to specify search criteria (e.g., {&quot;filter&quot;: {&quot;title&quot;: {&quot;contains&quot;: &quot;search term&quot;}}}) instead of deprecated text query parameter'
+              description: 'Variables for filtering issues. Supports filter.identifier shorthand (e.g., {"filter": {"identifier": {"eq": "W10-82"}}}) which auto-translates to team + number filters. Also supports standard filter objects (e.g., {"filter": {"title": {"contains": "search term"}}})'
             }
           },
           required: ['query','variables']
@@ -1091,8 +1091,13 @@ export class LinearTools {
             });
           }
           
-          result = await this.client.searchIssues(args, requestOptions);
-          
+          // Translate identifier filters to team.key + number filters
+          const translatedArgs = {
+            ...args,
+            variables: translateIdentifierFilter(args.variables)
+          };
+          result = await this.client.searchIssues(translatedArgs, requestOptions);
+
           // Report completion
           if (context?.progressToken && progressReporter) {
             await progressReporter.report(context.progressToken, {
@@ -1215,4 +1220,49 @@ export class LinearTools {
       throw error;
     }
   }
+}
+
+/**
+ * Parse a Linear issue identifier (e.g., "W10-82") into team key and number.
+ */
+export function parseIdentifier(id: string): { teamKey: string; number: number } {
+  const match = id.match(/^([A-Z][A-Z0-9]*)-(\d+)$/);
+  if (!match) throw new Error(`Invalid identifier format: "${id}". Expected format: "TEAM-123"`);
+  return { teamKey: match[1]!, number: parseInt(match[2]!, 10) };
+}
+
+/**
+ * Translate identifier filters (e.g., {filter: {identifier: {eq: "W10-82"}}})
+ * into valid Linear GraphQL filters using team.key + number.
+ */
+export function translateIdentifierFilter(variables: any): any {
+  const identifier = variables?.filter?.identifier;
+  if (!identifier) return variables;
+
+  const result = JSON.parse(JSON.stringify(variables));
+  const { identifier: idFilter, ...restFilter } = result.filter;
+
+  let teamFilter: any;
+  let numberFilter: any;
+
+  if (idFilter.eq) {
+    const parsed = parseIdentifier(idFilter.eq);
+    teamFilter = { key: { eq: parsed.teamKey } };
+    numberFilter = { eq: parsed.number };
+  } else if (idFilter.in) {
+    const parsed = idFilter.in.map((id: string) => parseIdentifier(id));
+    const teamKeys = [...new Set(parsed.map((p: { teamKey: string }) => p.teamKey))];
+    teamFilter = teamKeys.length === 1
+      ? { key: { eq: teamKeys[0] } }
+      : { key: { in: teamKeys } };
+    numberFilter = { in: parsed.map((p: { number: number }) => p.number) };
+  }
+
+  result.filter = {
+    ...restFilter,
+    ...(teamFilter && { team: teamFilter }),
+    ...(numberFilter && { number: numberFilter }),
+  };
+
+  return result;
 }
