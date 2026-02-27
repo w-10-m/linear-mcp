@@ -1,3 +1,14 @@
+# [1.6.0](https://github.com/w-10-m/linear-mcp/compare/v1.5.0...v1.6.0) (2026-02-27)
+
+
+### Features
+
+* add bulk issue operations, cycle management, hierarchy, time tracking, and attachments ([3050b61](https://github.com/w-10-m/linear-mcp/commit/3050b6126dc0a4ce5f518a1ea726fe05d90c3964))
+* add E2E tests to CI pipeline ([f41dd83](https://github.com/w-10-m/linear-mcp/commit/f41dd833aeb5e7ca616564d41a7c650f474492fa))
+* add typed request/response interfaces ([7a431a7](https://github.com/w-10-m/linear-mcp/commit/7a431a7ba267059c101677e4a53730cbdd41295f))
+* complete README documentation with all 40 tools ([aa2898f](https://github.com/w-10-m/linear-mcp/commit/aa2898f9a54d9f1f0cf3ac78360a8f5872bde22c))
+* upgrade MCP SDK from v0.5.0 to v1.27.1 ([39dc24b](https://github.com/w-10-m/linear-mcp/commit/39dc24b6a757bc205bf20967a9aa6c721fcb067b))
+
 # [1.5.0](https://github.com/w-10-m/linear-mcp/compare/v1.4.0...v1.5.0) (2026-02-27)
 
 
