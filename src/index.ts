@@ -122,9 +122,9 @@ class LinearMcpServer {
       return { tools };
     });
 
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
       const { name, arguments: args } = request.params;
-      const requestId = (request as any).id;
+      const requestId = extra.requestId;
       const progressToken = request.params._meta?.progressToken;
       
       // Register request for tracking
@@ -177,12 +177,17 @@ class LinearMcpServer {
     // Handle cancellation notifications
     this.server.setNotificationHandler(CancelledNotificationSchema, async (notification) => {
       const { requestId, reason } = notification.params;
-      
+
       this.logger.info('CANCELLATION_RECEIVED', 'Received cancellation notification', {
         requestId,
         reason
       });
-      
+
+      if (requestId === undefined) {
+        this.logger.debug('CANCELLATION_IGNORED', 'Cancellation ignored - no requestId provided', {});
+        return;
+      }
+
       // Cancel the request
       const cancelled = this.requestTracker.cancelRequest(requestId, reason);
       
