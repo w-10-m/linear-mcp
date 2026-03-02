@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/w-10-m/linear-mcp/compare/v1.6.0...v1.6.1) (2026-03-02)
+
+
+### Bug Fixes
+
+* add projectMilestones field hint to project tool descriptions ([48b1c10](https://github.com/w-10-m/linear-mcp/commit/48b1c108fc44895dd1fcada878289cd4689d82e0))
+
 # [1.6.0](https://github.com/w-10-m/linear-mcp/compare/v1.5.0...v1.6.0) (2026-02-27)
 
 
