@@ -236,7 +236,7 @@ export class LinearTools {
       },
       {
         name: 'linear_create_project',
-        description: 'Create a new project',
+        description: 'Create a new project. Note: milestones are accessed via the "projectMilestones" field (not "milestones")',
         inputSchema: {
           type: 'object',
           properties: {
@@ -254,7 +254,7 @@ export class LinearTools {
       },
       {
         name: 'linear_get_project',
-        description: 'Get project details including associated issues',
+        description: 'Get project details including associated issues. Note: milestones are accessed via the "projectMilestones" field (not "milestones")',
         inputSchema: {
           type: 'object',
           properties: {
@@ -272,7 +272,7 @@ export class LinearTools {
       },
       {
         name: 'linear_list_projects',
-        description: 'List all projects with optional filtering',
+        description: 'List all projects with optional filtering. Note: milestones are accessed via the "projectMilestones" field (not "milestones")',
         inputSchema: {
           type: 'object',
           properties: {
@@ -290,7 +290,7 @@ export class LinearTools {
       },
       {
         name: 'linear_update_project',
-        description: 'Update project properties',
+        description: 'Update project properties. Note: milestones are accessed via the "projectMilestones" field (not "milestones")',
         inputSchema: {
           type: 'object',
           properties: {
